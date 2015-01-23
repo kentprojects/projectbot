@@ -4,6 +4,10 @@
   "private": true,
   "author": "KentProject Developers <developers@kentprojects.com>",
   "description": "A simple project robot for KentProjects.",
+  "scripts": {
+    "start": "npm install && pm2 start process.json",
+    "stop": "pm2 stop process.json"
+  },
   "dependencies": {
     "hubot-pugme": "~0.1.0",
     "hubot-youtube": "~0.1.2",
@@ -18,7 +22,8 @@
     "hubot-scripts": "~2.5.16",
     "hubot-slack": "~3.2.1",
     "hubot": "~2.11.0",
-    "hubot-maps": "0.0.1"
+    "hubot-maps": "0.0.1",
+    "pm2": "~0.12.3"
   },
   "engines": {
     "node": "0.10.x"
