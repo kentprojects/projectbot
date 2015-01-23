@@ -1,5 +1,5 @@
 *.DS_Store
 *.log
 .hubot_history
-exec.sh
+envvars
 node_modules/

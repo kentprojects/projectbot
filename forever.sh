@@ -1,13 +1,10 @@
 #!/bin/bash
 # A simple script to invoke forever and handle log files.
-SLACK_TOKEN="YOUR-SLACK-TOKEN-HERE"
 TIMESTAMP=$(date +"%s")
 
 startForever() {
 	mkdir .forever -p
-	HUBOT_SLACK_TOKEN="$SLACK_TOKEN" \
-		PORT=9080 \
-		forever start \
+	forever start \
 		-o ".forever/bot.out.log" \
 		-e ".forever/bot.error.log" \
 		-c "sh" bin/hubot
