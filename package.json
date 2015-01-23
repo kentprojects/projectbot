@@ -5,8 +5,10 @@
   "author": "KentProject Developers <developers@kentprojects.com>",
   "description": "A simple project robot for KentProjects.",
   "scripts": {
-    "start": "npm install && pm2 start process.json",
-    "stop": "pm2 stop process.json"
+	"prestart": "npm install",
+    "start": "pm2 start process.json",
+    "stop": "pm2 stop process.json",
+	"poststop": "pm2 delete process.json"
   },
   "dependencies": {
     "hubot-pugme": "~0.1.0",

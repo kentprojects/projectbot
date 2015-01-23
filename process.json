@@ -2,13 +2,12 @@
   "apps" : [
     {
       "name": "ProjectBot",
-      "script": "bin/hubot",
+      "script": "./bin/hubot",
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "ignoreWatch": ["[\\/\\\\]\\./", "node_modules"],
       "watch": false,
-      "cwd": "/home/kentprojects/projectbot",
-      "error_file": "error.projectbot.log",
-      "out_file": "out.projectbot.log",
+      "error_file": "./.pm2/error.projectbot.log",
+      "out_file": "./.pm2/out.projectbot.log",
       "env": {
         "NODE_ENV": "production"
       }
