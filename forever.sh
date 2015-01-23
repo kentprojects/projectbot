@@ -1,7 +1,6 @@
 #!/bin/bash
 # A simple script to invoke forever and handle log files.
-BASE_PATH=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-SLACK_TOKEN="INSERT-YOUR-SLACK-TOKEN-HERE"
+SLACK_TOKEN="YOUR-SLACK-TOKEN-HERE"
 TIMESTAMP=$(date +"%s")
 
 startForever() {
@@ -24,7 +23,6 @@ stopForever() {
 	forever list
 }
 
-pushd "$BASE_PATH" >> /dev/null
 case "$1" in
 	"start") startForever ;;
 	"stop") stopForever ;;
@@ -33,4 +31,3 @@ case "$1" in
 		printf "Usage: ./forever.sh (start|stop)\n"
 		;;
 esac
-popd >> /dev/null
