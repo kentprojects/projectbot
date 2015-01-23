@@ -19,5 +19,13 @@
   "google.coffee",
   "hashing.coffee",
   "hello.coffee",
-  "httpcat.coffee"
+  "httpcat.coffee",
+  "isup.coffee",
+  "lmgtfy.coffee",
+  "marvin-quotes.coffee",
+  "nickgen.coffee",
+  "urban.coffee",
+  "youtube-info.coffee",
+  "zen.coffee",
+  "zombies.coffee"
 ]
