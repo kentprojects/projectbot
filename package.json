@@ -6,9 +6,9 @@
   "description": "A simple project robot for KentProjects.",
   "scripts": {
 	"prestart": "npm install",
-    "start": "pm2 start process.json",
-    "stop": "pm2 stop process.json",
-	"poststop": "pm2 delete process.json"
+    "start": "pm2 start projectbot.json",
+    "stop": "pm2 stop projectbot.json",
+	"poststop": "pm2 delete projectbot.json"
   },
   "dependencies": {
     "hubot-pugme": "~0.1.0",

@@ -3,12 +3,14 @@
     {
       "name": "ProjectBot",
       "script": "./bin/hubot",
+	  "args": [ "--adapter slack" ],
       "log_date_format": "YYYY-MM-DD HH:mm Z",
       "ignoreWatch": ["[\\/\\\\]\\./", "node_modules"],
       "watch": false,
-      "error_file": "./.pm2/error.projectbot.log",
-      "out_file": "./.pm2/out.projectbot.log",
+      "error_file": "./pm2/error.projectbot.log",
+      "out_file": "./pm2/out.projectbot.log",
       "env": {
+		"HUBOT_SLACK_TOKEN": "HERE-BE-THE-SLACK-OAUTH-TOKEN",
         "NODE_ENV": "production"
       }
     }
