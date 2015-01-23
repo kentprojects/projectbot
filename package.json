@@ -5,7 +5,7 @@
   "author": "KentProject Developers <developers@kentprojects.com>",
   "description": "A simple project robot for KentProjects.",
   "scripts": {
-	"list": "forever list",
+    "list": "forever list",
     "start": "npm install && sh forever.sh start",
     "stop": "sh forever.sh stop"
   },
@@ -24,7 +24,9 @@
     "hubot-slack": "~3.2.1",
     "hubot": "~2.11.0",
     "hubot-maps": "0.0.1",
-    "forever": "~0.13.0"
+    "forever": "~0.13.0",
+    "soupselect": "~0.2.0",
+    "htmlparser": "~1.7.7"
   },
   "engines": {
     "node": "0.10.x"
