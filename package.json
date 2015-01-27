@@ -27,7 +27,8 @@
     "forever": "~0.13.0",
     "soupselect": "~0.2.0",
     "htmlparser": "~1.7.7",
-    "cheerio": "~0.18.0"
+    "cheerio": "~0.18.0",
+    "hubot-cron": ">= 0.1.0"
   },
   "engines": {
     "node": "0.10.x"
