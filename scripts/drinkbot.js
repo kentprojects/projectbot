@@ -1,8 +1,14 @@
 var drink = {};
 
-drink.needADrink = function iNeedADrink(type) {
-  return function needADrink(message) {
+drink.iNeedADrink = function iNeedADrink(type) {
+  return function iNeedADrink(message) {
     message.reply('Perhaps it\'s time to get a ' + type + ' round underway?');
+  };
+};
+
+drink.theyNeedADrink = function theyNeedADrink(type) {
+  return function theyNeedADrink(message) {
+    message.reply('Be a lamb and get them a ' + type + '?');
   };
 };
 
