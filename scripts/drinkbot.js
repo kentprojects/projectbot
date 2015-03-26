@@ -8,7 +8,7 @@ drink.iNeedADrink = function iNeedADrink(type) {
 
 drink.theyNeedADrink = function theyNeedADrink(type) {
   return function theyNeedADrink(message) {
-    message.reply('Be a lamb and get them a ' + type + '?');
+    message.reply('Be a lamb and get ' + message.match[1] + ' a ' + type + '?');
   };
 };
 
