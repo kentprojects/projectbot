@@ -1,3 +1,6 @@
+// var SlackClient = require('slack-client');
+// var slack = new SlackClient(process.env.HUBOT_SLACK_TOKEN, true, true);
+
 var drink = {};
 
 drink.iNeedADrink = function iNeedADrink(type) {
@@ -12,9 +15,17 @@ drink.theyNeedADrink = function theyNeedADrink(type) {
   };
 };
 
+drink.drinkTime = function drinkTime(type) {
+  return function drinkTime(message) {
+    console.log(message);
+    message.reply('Be a lamb and get ' + message.match[1] + ' a ' + type + '?');
+  };
+};
+
 var commands = {
   'i need a DRINK': 'iNeedADrink',
-  '([a-z ,.\'-]+) needs a DRINK': 'theyNeedADrink'
+  '([a-z ,.\'-]+) needs a DRINK': 'theyNeedADrink',
+  'DRINK time': 'drinkTime'
 };
 
 var types = ['tea', 'beer'];
