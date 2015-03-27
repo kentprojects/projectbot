@@ -2,6 +2,7 @@
  * Description:
  *   Let's make a drink. Together.
  */
+var debug = require('debug')('Bot:Drinkbot');
 var drink = {};
 var slack = require('../slack');
 
@@ -38,13 +39,14 @@ drink.drinkTime = function drinkTime(type) {
 				return;
 			}
 
+			debug('All users', users);
+
 			users = users.filter(function (user) {
 				return user.presence === 'active';
 			});
-
-			console.log(users);
+			debug('Active users', users);
 			var user = users[Math.floor(Math.random() * users.length)];
-			console.log(user);
+			debug('Selected users', user);
 			message.reply('Be a lamb and make some tea?');
 		});
 	};
