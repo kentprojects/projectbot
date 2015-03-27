@@ -22,6 +22,12 @@ drink.drinkTime = function drinkTime(type) {
 
     console.log(message.envelope);
 
+    if (/* false && */ message.envelope.user && message.envelope.user.name && message.envelope.user.room &&
+    (message.envelope.user.name === message.envelope.user.room)) {
+      message.reply('Perhaps you could make it yourself this time?');
+      return;
+    }
+
     message.reply('Be a lamb and get ' + message.match[1] + ' a ' + type + '?');
   };
 };
