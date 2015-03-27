@@ -38,7 +38,13 @@ drink.drinkTime = function drinkTime(type) {
 				return;
 			}
 
+			users = users.filter(function (user) {
+				return user.presence === 'active';
+			});
+
 			console.log(users);
+			var user = users[Math.floor(Math.random() * users.length)];
+			console.log(user);
 			message.reply('Be a lamb and make some tea?');
 		});
 	};
