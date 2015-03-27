@@ -1,3 +1,7 @@
+/**
+ * Description:
+ *   Let's make a drink. Together.
+ */
 var drink = {};
 var slack = require('../slack');
 
@@ -19,19 +23,24 @@ drink.drinkTime = function drinkTime(type) {
 			message.reply('I don\'t know which room we\'re in!');
 			return;
 		}
-		
+
 		console.log(message.envelope);
-		
-		if (
-			// false &&
-			message.envelope.user && message.envelope.user.name && message.envelope.user.room &&
-			(message.envelope.user.name === message.envelope.user.room)
-		) {
+
+		if (false && message.envelope.user && message.envelope.user.name && message.envelope.user.room &&
+		(message.envelope.user.name === message.envelope.user.room)) {
 			message.reply('Perhaps you could make it yourself this time?');
 			return;
 		}
-		
-		message.reply('Be a lamb and get ' + message.match[1] + ' a ' + type + '?');
+
+		slack.listUsersAndPresence(function (error, users) {
+			if (error) {
+				console.error(error);
+				return;
+			}
+
+			console.log(users);
+			message.reply('Be a lamb and make some tea?');
+		});
 	};
 };
 
@@ -46,17 +55,17 @@ var types = ['tea', 'beer'];
 module.exports = function drinkBot(robot) {
 	types.forEach(function (type) {
 		/**
-		* For each command
-		*/
+		 * For each command
+		 */
 		for (var command in commands) {
 			if (commands.hasOwnProperty(command)) {
 				/**
-				* If that command references a valid function.
-				*/
+				 * If that command references a valid function.
+				 */
 				if (drink.hasOwnProperty(commands[command]) && (typeof drink[commands[command]] === "function")) {
 					/**
-					* Super subtly replace DRINK with the current type.
-					*/
+					 * Super subtly replace DRINK with the current type.
+					 */
 					robot.respond(
 						new RegExp(command.replace('DRINK', type), 'i'),
 						drink[commands[command]]([type])

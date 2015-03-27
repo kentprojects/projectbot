@@ -10,6 +10,13 @@ if (!process.env.HUBOT_SLACK_TOKEN) {
 	module.exports = {};
 }
 
+/**
+ * Make a request to the Slack API
+ *
+ * @param url A specific method to run.
+ * @param opts An object of additional query data to attach.
+ * @param callback A function to run on afterwards.
+ */
 function slackRequest(url, opts, callback) {
 	url = 'https://slack.com/api/' + url + '?token=' + process.env.HUBOT_SLACK_TOKEN;
 	for (var opt in opts) {
@@ -41,6 +48,21 @@ function slackRequest(url, opts, callback) {
 		callback(error);
 	});
 }
+
+
+slack.listChannels = function listSlackChannels(callback) {
+	slackRequest('channels.list', {exclude_archive: 1}, function(error, data) {
+		if (error) {
+			callback(error);
+		}
+		else if (!data.channels) {
+			callback(new Error('No channels array returned from Slack.'));
+		}
+		else {
+			callback(null, data.channels);
+		}
+	});
+};
 
 /**
  * List all the users in the current Slack team.
@@ -101,6 +123,10 @@ slack.getPresenceForTeam = function getPresenceForTeam(users, callback) {
 };
 
 if (!module.parent) {
+	slackRequest('auth.test', {}, function (error, users) {
+		console.log(error, users);
+	});
+	
 	slack.listUsersAndPresence(function(error, users) {
 		console.log(error, users);
 	});
