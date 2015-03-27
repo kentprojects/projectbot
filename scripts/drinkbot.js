@@ -6,15 +6,29 @@ var debug = require('debug')('Bot:Drinkbot');
 var drink = {};
 var slack = require('../slack');
 
+function getString(type, string) {
+	if (!strings.hasOwnProperty(type)) {
+		console.error('Invalid strings type:', type);
+		return;
+	}
+
+	if (!strings[type].hasOwnProperty(string)) {
+		console.error('Invalid string for type:', string);
+		return;
+	}
+
+	return strings[type][string];
+}
+
 drink.iNeedADrink = function iNeedADrink(type) {
 	return function iNeedADrink(message) {
-		message.reply('Perhaps it\'s time to get a ' + type + ' round underway?');
+		message.reply(getString(type, 'suggest_round'));
 	};
 };
 
 drink.theyNeedADrink = function theyNeedADrink(type) {
 	return function theyNeedADrink(message) {
-		message.reply('Be a lamb and get ' + message.match[1] + ' a ' + type + '?');
+		message.reply(getString(type, 'suggest_for_person').replace('NAME', message.match[1]));
 	};
 };
 
@@ -27,9 +41,9 @@ drink.drinkTime = function drinkTime(type) {
 
 		console.log(message.envelope);
 
-		if (false && message.envelope.user && message.envelope.user.name && message.envelope.user.room &&
+		if (message.envelope.user && message.envelope.user.name && message.envelope.user.room &&
 		(message.envelope.user.name === message.envelope.user.room)) {
-			message.reply('Perhaps you could make it yourself this time?');
+			message.reply(getString(type, 'self_room'));
 			return;
 		}
 
@@ -58,7 +72,17 @@ var commands = {
 	'DRINK time': 'drinkTime'
 };
 
-var types = ['tea', 'beer'];
+var strings = {
+	tea: {
+		self_room: 'Perhaps you could make the tea yourself this time?',
+		suggest_for_person: 'Why don\'t you get NAME a tea?',
+		suggest_round: 'Perhaps it\'s time to get a tea round underway?'
+	}
+};
+
+var types = [
+	'tea', 'beer'
+];
 
 module.exports = function drinkBot(robot) {
 	types.forEach(function (type) {
